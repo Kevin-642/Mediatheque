@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Membres</title>
+</head>
+
+<body>
+    <h1>Liste des Membres</h1>
+    <ul>
+        {% for membre in emprunteurs %}
+            <li>
+                {{ membre.name }} {% if membre.bloque %}(Bloqué){% endif %} - 
+                <a href="{% url 'mettre_a_jour_membre' membre.id %}">Mettre à jour</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'creer_membre' %}">Créer un nouvel Membre</a><br>
+    <a href="{% url 'index' %}">Retourner à la Page d'Accueil</a>
+</body>
+
+</html>

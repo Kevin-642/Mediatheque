@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer un Emprunt</title>
+</head>
+
+<body>
+    <h1>Créer un Emprunt</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <label for="media_id">Sélectionnez un Média :</label>
+        <select name="media_id" id="media_id">
+            {% for livre in livres %}
+                <option value="{{ livre.id }}">{{ livre.name }} - {{ livre.auteur }}</option>
+            {% endfor %}
+            {% for dvd in dvds %}
+                <option value="{{ dvd.id }}">{{ dvd.name }} - {{ dvd.realisateur }}</option>
+            {% endfor %}
+            {% for cd in cds %}
+                <option value="{{ cd.id }}">{{ cd.name }} - {{ cd.artiste }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="emprunteur_id">Sélectionnez un Emprunteur (Membre):</label>
+        <select name="emprunteur_id" id="emprunteur_id">
+            {% for emprunteur in emprunteurs %}
+                <option value="{{ emprunteur.id }}">{{ emprunteur.name }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <input type="submit" value="Créer">
+    </form>
+
+    <a href="{% url 'rentrer_emprunt' %}">Rentrer un Emprunt</a><br>
+    <a href="{% url 'index' %}">Retourner à la Page d'Accueil</a>
+</body>
+
+</html>

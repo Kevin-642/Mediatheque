@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Médias</title>
+</head>
+
+<body>
+    <h1>Liste des Médias</h1>
+    <ul>
+        <h2>Livres</h2>
+        {% for livre in livres %}
+            <li>{{ livre.name }} - {{ livre.auteur }} {% if livre.disponible %}(Disponible){% else %}(Emprunté par {{ livre.emprunteur.name }}){% endif %}</li>
+        {% endfor %}
+
+        <h2>DVDs</h2>
+        {% for dvd in dvds %}
+            <li>{{ dvd.name }} - {{ dvd.realisateur }} {% if dvd.disponible %}(Disponible){% else %}(Emprunté par {{ dvd.emprunteur.name }}){% endif %}</li>
+        {% endfor %}
+
+        <h2>CDs</h2>
+        {% for cd in cds %}
+            <li>{{ cd.name }} - {{ cd.artiste }} {% if cd.disponible %}(Disponible){% else %}(Emprunté par {{ cd.emprunteur.name }}){% endif %}</li>
+        {% endfor %}
+
+        <h2>Jeux de Plateau (Disponibles en consultation uniquement)</h2>
+        {% for jeu in jeux %}
+            <li>{{ jeu.name }} - {{ jeu.editeur }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'ajouter_media' %}">Ajouter un nouveau Média</a><br>
+    <a href="{% url 'index' %}">Retourner à la Page d'Accueil</a>
+</body>
+
+</html>

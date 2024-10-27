@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un Média</title>
+</head>
+
+<body>
+    <h1>Ajouter un Média</h1>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <fieldset>
+            <input type="radio" id="livre" name="media_type" value="livre" required>
+            <label for="livre">Livre - </label>
+            <label for="livre_name">Nom :</label>
+            <input type="text" name="livre_name" id="livre_name">
+            <label for="livre_auteur">Auteur :</label>
+            <input type="text" name="livre_auteur" id="livre_auteur">
+        </fieldset>
+
+        <fieldset>
+            <input type="radio" id="dvd" name="media_type" value="dvd" required>
+            <label for="dvd">DVD - </label>
+            <label for="dvd_name">Nom :</label>
+            <input type="text" name="dvd_name" id="dvd_name">
+            <label for="dvd_realisateur">Réalisateur :</label>
+            <input type="text" name="dvd_realisateur" id="dvd_realisateur">
+        </fieldset>
+
+        <fieldset>
+            <input type="radio" id="cd" name="media_type" value="cd" required>
+            <label for="cd">CD - </label>
+            <label for="cd_name">Nom :</label>
+            <input type="text" name="cd_name" id="cd_name">
+            <label for="cd_artiste">Artiste :</label>
+            <input type="text" name="cd_artiste" id="cd_artiste">
+        </fieldset>
+
+        <fieldset>
+            <input type="radio" id="jeu" name="media_type" value="jeu" required>
+            <label for="jeu">Jeu de Plateau - </label>
+            <label for="jeu_name">Nom :</label>
+            <input type="text" name="jeu_name" id="jeu_name">
+            <label for="jeu_editeur">Éditeur :</label>
+            <input type="text" name="jeu_editeur" id="jeu_editeur">
+        </fieldset>
+
+        <button type="submit">Ajouter</button>
+    </form>
+
+    <a href="{% url 'liste_medias' %}">Voir la liste des Médias</a><br>
+    <a href="{% url 'index' %}">Retourner à la Page d'Accueil</a>
+</body>
+
+</html>

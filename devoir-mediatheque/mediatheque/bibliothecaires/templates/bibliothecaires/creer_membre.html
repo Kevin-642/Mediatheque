@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="fr">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer un Membre</title>
+</head>
+
+<body>
+    <h1>Créer un Membre</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <label for="name">Nom du membre :</label>
+        <input type="text" name="name" id="name" required>
+        <input type="submit" value="Créer">
+    </form>
+
+    <a href="{% url 'liste_membres' %}">Voir la liste des Membres</a><br>
+    <a href="{% url 'index' %}">Retourner à la Page d'Accueil</a>
+</body>
+
+</html>

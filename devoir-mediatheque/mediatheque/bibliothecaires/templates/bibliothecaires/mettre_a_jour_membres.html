@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mettre à jour un Membre</title>
+</head>
+
+<body>
+    <h1>Mettre à jour un Membre</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <label for="name">Nom de l'emprunteur :</label>
+        <input type="text" name="name" id="name" value="{{ emprunteur.name }}" required><br>
+        <label for="bloque">Bloqué :</label>
+        <input type="checkbox" name="bloque" id="bloque" {% if emprunteur.bloque %}checked{% endif %}><br>
+        <input type="submit" value="Mettre à jour">
+    </form>
+
+    <a href="{% url 'liste_membres' %}">Voir la liste des Membres</a><br>
+    <a href="{% url 'index' %}">Retourner à la Page d'Accueil</a>
+</body>
+
+</html>

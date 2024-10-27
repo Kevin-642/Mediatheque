@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page d'accueil</title>
+</head>
+
+<body>
+    <h1>Bienvenue à la Médiathèque du CEF</h1>
+    <ul>
+        <h2>Menu du Bibliothécaire</h2>
+            <li><a href="{% url 'liste_medias' %}">Liste des Médias</a></li>
+            <li><a href="{% url 'ajouter_media' %}">Ajouter un Média</a></li>
+            <li><a href="{% url 'liste_membres' %}">Liste des Membres</a></li>
+            <li><a href="{% url 'creer_membre' %}">Créer un Membre</a></li>
+            <li><a href="{% url 'creer_emprunt' %}">Créer un Emprunt</a></li>
+            <li><a href="{% url 'rentrer_emprunt' %}">Rentrer un Emprunt</a></li>
+
+        <h2>Menu des Membres</h2>
+            <li><a href="{% url 'liste_medias_emprunteurs' %}">Liste des Médias</a></li>
+    </ul>
+</body>
+
+</html>
