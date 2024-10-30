@@ -5,6 +5,7 @@ from datetime import timedelta
 
 # Classe Emprunteur
 class Emprunteur(models.Model):
+    objects = None
     name = models.CharField(max_length=1000)
     bloque = models.BooleanField(default=False)
 

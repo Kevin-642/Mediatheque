@@ -1,0 +1,96 @@
+
+
+RAPPORT DU DEVOIR
+
+Base de données
+
+L'application est reliée à une base de données. Le lien pour y accéder est le suivant : http://127.0.0.1:8000/admin/
+
+	Informations d'utilisateur (superuser) pour se connecter à la base de données :
+
+	- Nom d'utilisateur : BibliothecaireChef02
+    - Mot de passe : Media2024
+
+
+Correction du code existant
+
+Le code existant : https://www.zupimages.net/up/24/41/yi8o.png
+
+Les modifications apportées au code existant sont les suivantes :
+
+1.Les classes livre, dvd et cd possèdent des caractéristiques communes (name, dateEmprunt, disponible, et emprunteur).
+2.Une classe mère (Media) contenant ces caractéristiques communes à été créée, elle permet à ces trois classes d'en hériter directement , et permet ainsi une lecture et une modification du code plus facile.
+3. Les fonctions menu(), menuBibliotheque(), et menuMembre() ont été supprimées, pour être remplacées par une page d'accueil, permettant l'accès aux deux applications directement, avec des liens vers chaque pages et leurs différentes fonctionnalités.
+4.Les fonctions emprunter(), retourner(), est_en_retard(), et nb_emprunts() ont été créées, permettant de s'assurer qu'un média puisse être emprunté et retourné correctement, en respectant les contraintes demandées (un membre ne peut pas avoir plus de trois emprunts à
+la fois, et un membre ayant un emprunt en retard (un média non retourné au bout d'une semaine) ne pourra plus emprunter.
+
+Fonctionnalités demandées
+
+Les fonctionnalités demandées sont les suivantes :
+
+- Pour l'application bibliothécaires :
+
+Afficher la liste des médias.
+
+Une fonction liste_médias() a été créée, utilisant NomDeLaClasseCorrespondante.objects.all pour chaque type de média, et permet
+l'affichage des médias récupérés directement depuis la base de données via la page liste_medias.html.
+La page liste_medias.html est une page simple, contenant uniquement la liste des médias, classés par catégories. La disponibilité ou non d'un média est donnée, avec le
+nom de l'emprunteur dans le cas où le média a été emprunté.
+
+
+
+
+Ajouter un média.
+
+Une fonction ajouter_media() a été créée, utilisant la méthode POST. Selon le type de média choisi, les données entrées sont créées et sauvegardées directement dans la base de données, dans la classe correspondante, en utilisant NomDeLaClasseCorrespondante.objects.create. Ajouter un média est possible via la page ajouter_media.html.
+
+
+
+
+Afficher la liste des Membres.
+
+Tout comme pour afficher la liste des médias, une fonction liste_membres() a été créée, utilisant Emprunteur.objects.all et permet l'affichage des emprunteurs récupérés directement depuis la base de données via la page liste_membres.html. La page liste_membres.html est page simple, contenant uniquement la liste des emprunteurs, avec un lien vers la page mettre_a_jour_membres.html, permettant de modifier les informations d'un emprunteur.
+
+
+
+
+Créer un membre.
+
+Tout comme pour ajouter un média, une fonction créer_membre() a été créée, utilisant la méthode POST et permettant la création et sauvegarde des données entrées directement dans la base de données, dans la classe Emprunteur, en utilisant Emprunteur.objects.create. Créer un emprunteur est possible via la page creer_membre.html.
+
+
+
+
+Mettre à jour un membre.
+
+Une fonction mettre_a_jour_membre() a été créée, utilisant la méthode POST. Les informations modifiées de l'emprunteur choisi sont sauvegardées directement sur la base de données en utilisant emprunteur.save(). Mettre à jour un emprunteur est possible via la page liste_membres.html, en cliquant sur le lien correspondant à l'emprunteur choisi, qui mène à mettre_a_jour_membres.html et permet de modifier les informations de l'emprunteur choisi en utilisant l'id correspondant à cet emprunteur.
+
+
+
+Créer un emprunt pour un média disponible.
+
+Une fonction creer_emprunt a été créée, utilisant tout d'abord NomDeLaClasseCorrespondante.objects.filter pour vérifier qu'un média
+est bien disponible pour être emprunté (disponible=True), et qu'un emprunteur n'est pas bloqué (bloque=False).La méthode POST est ensuite utilisée, ainsi que NomDeLaClasseCorrespondante.objects.get, permettant de récupérer un média selon son id directement depuis la base de données. L'emprunteur est ensuite également récupéré selon son id, et la fonction emprunter() est utilisée (depuis bibliothecaires/models.py). Créer un emprunt est possible via la page creer_emprunt.html, en choisissant simplement un média et
+un emprunteur.
+
+
+
+
+Rentrer un emprunt.
+
+Une fonction rentrer_emprunt a été créée, utilisant tout d'abord  NomDeLaClasseCorrespondante.objects.filter pour vérifier qu'un média a bien été emprunté (disponible=False). La méthode POST est ensuite utilisée, ainsi que NomDeLaClasseCorrespondante.objects.get, permettant de récupérer un média selon son id directement depuis la base de données. La fonction retourner() est ensuite utilisée (depuis bibliothecaires/models.py). Rentrer un emprunt est possible via la page rentrer_emprunt.html.
+
+
+
+
+
+- Pour l'application membres :
+
+Afficher la liste des médias.
+
+Le fichier bibliothecaires.models a été importé dans membres/views.py, permettant de simplement récupérer les informations des classes et fonctions présentent dans bibliothécaires/models.py, évitant ainsi de devoir recréer des classes et données déjà existantes. Une fonction liste_medias_emprunteurs() a ensuite été créée, permettant l'affichage des médias récupérés directement depuis la base de données via la page liste_medias_emprunteurs.html. La page liste_medias_emprunteurs.html est presque identique à la page liste_medias.html, sauf que les noms des emprunteurs (membres) ayant emprunté un média ne sont pas donnés, cette information concernant
+uniquement les bibliothécaires, et non les emprunteurs.
+
+
+
+
